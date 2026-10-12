@@ -1,0 +1,7 @@
+service_request_id,requested_datetime,agency,service_name,status,neighborhood
+100001,2025-01-02T08:15:00,SFMTA,Street and Sidewalk Cleaning,Open,Sunset/Parkside
+100002,2025-01-02T09:40:00,DPW,Streetlight Repair,Closed,Chinatown
+100003,2025-01-03T11:20:00,DPW,Illegal Dumping,Open,Sunset/Parkside
+100004,2025-01-03T13:05:00,311,Noise Report,Open,Mission
+100005,2025-01-04T16:30:00,DPW,Streetlight Repair,Closed,Richmond
+100006,2025-01-05T07:55:00,SFMTA,Blocked Driveway,Open,Mission

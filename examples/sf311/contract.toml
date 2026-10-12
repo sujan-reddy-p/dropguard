@@ -1,0 +1,37 @@
+[dataset]
+name = "sf311-service-requests"
+primary_key = "service_request_id"
+min_rows = 1
+max_rows = 100000
+allow_extra_columns = false
+
+[columns.service_request_id]
+type = "integer"
+nullable = false
+min = 1
+
+[columns.requested_datetime]
+type = "datetime"
+nullable = false
+
+[columns.agency]
+type = "string"
+nullable = false
+allowed = ["311", "DPW", "SFMTA"]
+
+[columns.service_name]
+type = "string"
+nullable = false
+
+[columns.status]
+type = "string"
+nullable = false
+allowed = ["Open", "Closed"]
+
+[columns.neighborhood]
+type = "string"
+nullable = false
+
+[drift]
+max_row_count_change = 0.40
+max_null_rate_increase = 0.10

@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install -e '.[dev]'
+      - run: ruff check src tests
+      - run: pytest -q
+      - run: python -m build
+      - name: Smoke-test the bundled example
+        run: |
+          dropguard snapshot --input examples/sf311/good_batch.csv --output "$RUNNER_TEMP/sf311-baseline.json"
+          dropguard validate --contract examples/sf311/contract.toml --input examples/sf311/good_batch.csv --baseline "$RUNNER_TEMP/sf311-baseline.json" --json-report "$RUNNER_TEMP/sf311-report.json"
+      - name: Confirm a broken sample is rejected
+        run: |
+          set +e
+          dropguard validate --contract examples/sf311/contract.toml --input examples/sf311/incoming_batch.csv --baseline "$RUNNER_TEMP/sf311-baseline.json"
+          status=$?
+          set -e
+          test "$status" -eq 1

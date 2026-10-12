@@ -1,0 +1,4 @@
+service_request_id,requested_datetime,agency,service_name,status,neighborhood,priority
+100010,2025-01-06T08:10:00,DPW,Streetlight Repair,Open,Chinatown,Normal
+100010,2025-01-06T09:10:00,SFMTA,Blocked Driveway,Reopened,Mission,High
+100011,not-a-date,DPW,Illegal Dumping,Open,Richmond,Normal
